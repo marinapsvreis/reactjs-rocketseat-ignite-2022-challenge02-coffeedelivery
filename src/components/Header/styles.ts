@@ -7,7 +7,6 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline: 10rem;
 `
 
 export const Logo = styled.img`
@@ -23,11 +22,16 @@ export const Info = styled.div`
 
 export const Location = styled.div`
   display: flex;
+  justify-content: center;
+  gap: 4px;
   align-items: center;
   background: ${(props) => props.theme['purple-300']};
   color: ${(props) => props.theme['purple-700']};
+  font-size: 0.875rem;
   padding: 8px;
   border-radius: 6px;
+  width: 8.93rem;
+  height: 2.375rem;
 `
 
 export const Cart = styled.button`
