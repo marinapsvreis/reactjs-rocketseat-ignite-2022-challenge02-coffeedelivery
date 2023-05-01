@@ -6,6 +6,7 @@ import {
   Money,
 } from 'phosphor-react'
 import { useContext, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import { CartContext } from '../../contexts/CartContext'
 import { Product } from './components/Product'
 import {
@@ -29,8 +30,9 @@ import {
 
 interface Address {
   cep: string
+  numero?: string
+  complemento?: string
   logradouro: string
-  complemento: string
   bairro: string
   localidade: string
   uf: string
@@ -42,8 +44,9 @@ export function Checkout() {
   const [cep, setCep] = useState('')
   const [address, setAddress] = useState<Address>({
     cep: '',
-    logradouro: '',
+    numero: '',
     complemento: '',
+    logradouro: '',
     bairro: '',
     localidade: '',
     uf: '',
@@ -54,8 +57,44 @@ export function Checkout() {
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then((response) => response.json())
         .then((data) => {
-          setAddress(data)
+          if (data.erro) {
+            toast.error('CEP não encontrado na API viaCEP', {
+              position: 'top-center',
+              autoClose: 4000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            })
+          } else {
+            toast.success(
+              'CEP encontrado na API viaCEP, formulário atualizado',
+              {
+                position: 'top-center',
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'colored',
+              },
+            )
+
+            setAddress({
+              cep,
+              numero: '',
+              complemento: '',
+              logradouro: data.logradouro,
+              bairro: data.bairro,
+              localidade: data.localidade,
+              uf: data.uf,
+            })
+          }
         })
+        .catch((error) => console.log(error))
     }
   }, [cep])
 
@@ -86,14 +125,41 @@ export function Checkout() {
               />
             </LineForm>
             <LineForm>
-              <input type="text" placeholder="Rua" value={address.logradouro} />
+              <input
+                type="text"
+                placeholder="Rua"
+                value={address.logradouro}
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    logradouro: e.target.value,
+                  })
+                }}
+              />
             </LineForm>
             <LineForm>
-              <input className="numero" type="number" placeholder="Número" />
+              <input
+                className="numero"
+                type="text"
+                placeholder="Número"
+                value={address.numero}
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    numero: e.target.value,
+                  })
+                }}
+              />
               <input
                 type="text"
                 placeholder="Complemento"
                 value={address.complemento}
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    complemento: e.target.value,
+                  })
+                }}
               />
             </LineForm>
             <LineForm>
@@ -102,17 +168,35 @@ export function Checkout() {
                 type="text"
                 placeholder="Bairro"
                 value={address.bairro}
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    bairro: e.target.value,
+                  })
+                }}
               />
               <input
                 type="text"
                 placeholder="Cidade"
                 value={address.localidade}
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    localidade: e.target.value,
+                  })
+                }}
               />
               <input
                 className="uf"
                 type="text"
                 placeholder="UF"
                 value={address.uf}
+                onChange={(e) => {
+                  setAddress({
+                    ...address,
+                    uf: e.target.value,
+                  })
+                }}
               />
             </LineForm>
           </Form>
