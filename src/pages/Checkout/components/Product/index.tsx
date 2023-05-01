@@ -34,7 +34,6 @@ export function Product({ product }: ProductProps) {
 
   useEffect(() => {
     updateProductQuantityOnCart(product, count)
-    console.log(count)
   }, [count])
 
   return (
