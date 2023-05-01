@@ -34,6 +34,26 @@ export const Location = styled.div`
   height: 2.375rem;
 `
 
+export const CircleCounter = styled.span`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+
+  font-size: 0.75rem;
+  color: ${(props) => props.theme.white};
+  background: ${(props) => props.theme['yellow-700']};
+
+  position: relative;
+  top: -16px;
+  right: -16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-decoration: none;
+`
+
 export const Cart = styled.button`
   display: flex;
   align-items: center;

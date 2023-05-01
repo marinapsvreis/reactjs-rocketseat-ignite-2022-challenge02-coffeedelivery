@@ -5,7 +5,7 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { Product } from './components/Product'
 import {
@@ -27,9 +27,39 @@ import {
   TotalOrder,
 } from './styles'
 
+interface Address {
+  cep: string
+  logradouro: string
+  complemento: string
+  bairro: string
+  localidade: string
+  uf: string
+}
+
 export function Checkout() {
   const { products } = useContext(CartContext)
+  const [cep, setCep] = useState('')
+  const [address, setAddress] = useState<Address>({
+    cep: '',
+    logradouro: '',
+    complemento: '',
+    bairro: '',
+    localidade: '',
+    uf: '',
+  })
 
+  useEffect(() => {
+    if (cep.length === 8) {
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          setAddress(data)
+        })
+    }
+  }, [cep])
+
+  //
   return (
     <CheckoutContainer>
       <div>
@@ -46,19 +76,45 @@ export function Checkout() {
           </TitleArea>
           <Form>
             <LineForm>
-              <input type="text" placeholder="CEP" />
+              <input
+                type="text"
+                placeholder="CEP"
+                name="cep"
+                value={cep}
+                onChange={(e) => {
+                  setCep(e.target.value)
+                }}
+              />
             </LineForm>
             <LineForm>
-              <input type="text" placeholder="Rua" />
+              <input type="text" placeholder="Rua" value={address.logradouro} />
             </LineForm>
             <LineForm>
               <input className="numero" type="number" placeholder="Número" />
-              <input type="text" placeholder="Complemento" />
+              <input
+                type="text"
+                placeholder="Complemento"
+                value={address.complemento}
+              />
             </LineForm>
             <LineForm>
-              <input className="bairro" type="text" placeholder="Bairro" />
-              <input type="text" placeholder="Cidade" />
-              <input className="uf" type="text" placeholder="UF" />
+              <input
+                className="bairro"
+                type="text"
+                placeholder="Bairro"
+                value={address.bairro}
+              />
+              <input
+                type="text"
+                placeholder="Cidade"
+                value={address.localidade}
+              />
+              <input
+                className="uf"
+                type="text"
+                placeholder="UF"
+                value={address.uf}
+              />
             </LineForm>
           </Form>
         </EnderecoContainer>
