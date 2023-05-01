@@ -67,7 +67,7 @@ export const CardFooter = styled.div`
 
 export const ButtonToAddCoffee = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 
   align-items: center;
   background-color: ${(props) => props.theme['base-button']};
@@ -78,6 +78,7 @@ export const ButtonToAddCoffee = styled.div`
     border: none;
     background-color: ${(props) => props.theme['base-button']};
     color: ${(props) => props.theme['purple-500']};
+    width: 1.5rem;
     height: 100%;
     font-size: 1.5rem;
 
@@ -88,16 +89,18 @@ export const ButtonToAddCoffee = styled.div`
 
   button:hover {
     color: ${(props) => props.theme['purple-700']};
+    background-color: ${(props) => props.theme['purple-300']};
+  }
+
+  button:focus {
+    box-shadow: none;
   }
 
   p {
     height: 100%;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* border: 1px solid #ff4455; */
   }
 `
 
