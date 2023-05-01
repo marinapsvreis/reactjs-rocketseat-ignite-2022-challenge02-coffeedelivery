@@ -74,4 +74,8 @@ export const CircleCounter = styled.span`
   position: absolute;
   top: -8px;
   right: -8px;
+
+  &.empty {
+    display: none;
+  }
 `

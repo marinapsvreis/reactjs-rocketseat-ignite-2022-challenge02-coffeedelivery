@@ -30,7 +30,9 @@ export function Header() {
           <NavLink to="/checkout" title="Checkout">
             <Cart>
               <ShoppingCart size={22} weight="fill" color="#C47F17" />
-              <CircleCounter>{products.length}</CircleCounter>
+              <CircleCounter className={products.length === 0 ? 'empty' : ''}>
+                {products.length}
+              </CircleCounter>
             </Cart>
           </NavLink>
         </Info>
