@@ -119,14 +119,16 @@ export function Checkout() {
                 R${' '}
                 {products
                   .reduce((sumTotal, product) => {
-                    return sumTotal + product.price * product.quantity + 3.5
-                  }, 0)
+                    return sumTotal + product.price * product.quantity
+                  }, 3.5)
                   .toFixed(2)
                   .replace('.', ',')}
               </div>
             </TotalOrder>
           </SummaryContainer>
-          <SendOrder>CONFIRMAR PEDIDO</SendOrder>
+          <SendOrder disabled={products.length === 0}>
+            CONFIRMAR PEDIDO
+          </SendOrder>
         </CartContainer>
       </div>
     </CheckoutContainer>

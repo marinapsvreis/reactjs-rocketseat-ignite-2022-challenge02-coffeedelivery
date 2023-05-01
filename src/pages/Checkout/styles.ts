@@ -144,4 +144,12 @@ export const SendOrder = styled.button`
   background-color: ${(props) => props.theme['yellow-500']};
   border-radius: 6px;
   color: ${(props) => props.theme.white};
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &:not(:disabled):hover {
+    background-color: ${(props) => props.theme['yellow-700']};
+  }
 `
