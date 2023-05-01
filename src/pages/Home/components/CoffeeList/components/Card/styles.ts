@@ -136,4 +136,10 @@ export const IconBoxButton = styled.button`
   border: none;
   box-shadow: none;
   border-radius: 6px;
+
+  transition: 0.2s;
+
+  &:hover {
+    background-color: ${(props) => props.theme['purple-500']};
+  }
 `

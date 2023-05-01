@@ -94,6 +94,10 @@ export const RemoveButton = styled.button`
   p {
     font-size: 0.75rem;
   }
+
+  &:hover {
+    background-color: ${(props) => props.theme['base-hover']};
+  }
 `
 
 export const ProductPrice = styled.p`

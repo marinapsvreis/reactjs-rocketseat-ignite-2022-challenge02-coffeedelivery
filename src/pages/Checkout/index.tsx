@@ -38,6 +38,7 @@ interface Address {
 
 export function Checkout() {
   const { products } = useContext(CartContext)
+  const [paymentOption, setPaymentOption] = useState('')
   const [cep, setCep] = useState('')
   const [address, setAddress] = useState<Address>({
     cep: '',
@@ -58,7 +59,6 @@ export function Checkout() {
     }
   }, [cep])
 
-  //
   return (
     <CheckoutContainer>
       <div>
@@ -129,15 +129,28 @@ export function Checkout() {
             </div>
           </TitleArea>
           <PayOptionsContainer>
-            <PayOption>
+            <PayOption
+              className={`${
+                paymentOption === 'CARTÃO DE CRÉDITO' ? 'selected' : ''
+              }`}
+              onClick={() => setPaymentOption('CARTÃO DE CRÉDITO')}
+            >
               <CreditCard size={16} />
               <p>CARTÃO DE CRÉDITO</p>
             </PayOption>
-            <PayOption>
+            <PayOption
+              className={`${
+                paymentOption === 'CARTÃO DE DÉBITO' ? 'selected' : ''
+              }`}
+              onClick={() => setPaymentOption('CARTÃO DE DÉBITO')}
+            >
               <Bank size={16} />
               <p>CARTÃO DÉBITO</p>
             </PayOption>
-            <PayOption>
+            <PayOption
+              className={`${paymentOption === 'DINHEIRO' ? 'selected' : ''}`}
+              onClick={() => setPaymentOption('DINHEIRO')}
+            >
               <Money size={16} />
               <p>DINHEIRO</p>
             </PayOption>
