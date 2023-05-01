@@ -8,6 +8,7 @@ export interface Coffee {
   labels: string[]
   price: number
   img: string
+  count: number
 }
 
 const coffeesMock: Coffee[] = [
@@ -18,6 +19,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL'],
     price: 9.9,
     img: 'https://imgur.com/A0p3RKu.png',
+    count: 1,
   },
   {
     id: 2,
@@ -26,6 +28,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL'],
     price: 9.9,
     img: 'https://imgur.com/WCgu4bm.png',
+    count: 1,
   },
   {
     id: 3,
@@ -34,6 +37,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL'],
     price: 9.9,
     img: 'https://imgur.com/5Fn3Mt3.png',
+    count: 1,
   },
   {
     id: 4,
@@ -42,6 +46,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL', 'GELADO'],
     price: 9.9,
     img: 'https://imgur.com/eNFrtYe.png',
+    count: 1,
   },
   {
     id: 5,
@@ -50,6 +55,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL', 'COM LEITE'],
     price: 9.9,
     img: 'https://i.imgur.com/asdTp68.png',
+    count: 1,
   },
   {
     id: 6,
@@ -59,6 +65,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL', 'COM LEITE'],
     price: 9.9,
     img: 'https://imgur.com/pRcJ9V4.png',
+    count: 1,
   },
   {
     id: 7,
@@ -68,6 +75,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL', 'COM LEITE'],
     price: 9.9,
     img: 'https://imgur.com/uBECnEw.png',
+    count: 1,
   },
   {
     id: 8,
@@ -77,6 +85,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL', 'COM LEITE'],
     price: 9.9,
     img: 'https://imgur.com/fMtSWmI.png',
+    count: 1,
   },
   {
     id: 9,
@@ -85,6 +94,7 @@ const coffeesMock: Coffee[] = [
     labels: ['TRADICIONAL', 'COM LEITE'],
     price: 9.9,
     img: 'https://imgur.com/r0B21yV.png',
+    count: 1,
   },
   {
     id: 10,
@@ -93,6 +103,7 @@ const coffeesMock: Coffee[] = [
     labels: ['ESPECIAL', 'COM LEITE'],
     price: 9.9,
     img: 'https://i.imgur.com/jALcqRb.png',
+    count: 1,
   },
   {
     id: 11,
@@ -102,6 +113,7 @@ const coffeesMock: Coffee[] = [
     labels: ['ESPECIAL', 'ALCOÓLICO', 'GELADO'],
     price: 9.9,
     img: 'https://imgur.com/1d0l3dH.png',
+    count: 1,
   },
   {
     id: 12,
@@ -110,6 +122,7 @@ const coffeesMock: Coffee[] = [
     labels: ['ESPECIAL'],
     price: 9.9,
     img: 'https://imgur.com/Ydg2SAg.png',
+    count: 1,
   },
   {
     id: 13,
@@ -118,14 +131,16 @@ const coffeesMock: Coffee[] = [
     labels: ['ESPECIAL'],
     price: 9.9,
     img: 'https://i.imgur.com/yZWoouB.png',
+    count: 1,
   },
   {
     id: 14,
     name: 'Irlandês',
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
-    labels: ['ESPECIAL'],
+    labels: ['ESPECIAL', 'ALCOÓLICO'],
     price: 9.9,
     img: 'https://imgur.com/krVTiLV.png',
+    count: 1,
   },
 ]
 

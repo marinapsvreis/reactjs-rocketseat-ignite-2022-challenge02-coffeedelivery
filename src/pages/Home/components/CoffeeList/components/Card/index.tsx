@@ -1,4 +1,5 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { useState } from 'react'
 import { Coffee } from '../..'
 import {
   ButtonToAddCoffee,
@@ -21,6 +22,18 @@ interface CardProps {
 }
 
 export function Card({ coffee }: CardProps) {
+  const [count, setCount] = useState(1)
+
+  function handleAddCount(coffee: Coffee) {
+    setCount(count + 1)
+  }
+
+  function handleSubstractCount(coffee: Coffee) {
+    if (count - 1 > 0) {
+      setCount(count - 1)
+    }
+  }
+
   return (
     <CardContainer>
       <CoffeImg src={coffee.img} alt={coffee.name} />
@@ -38,11 +51,11 @@ export function Card({ coffee }: CardProps) {
         </PriceContainer>
         <CartInfo>
           <ButtonToAddCoffee>
-            <button>
+            <button onClick={() => handleSubstractCount(coffee)}>
               <Minus size={16} weight="bold" />
             </button>
-            <p>1</p>
-            <button>
+            <p>{count}</p>
+            <button onClick={() => handleAddCount(coffee)}>
               <Plus size={16} weight="bold" />
             </button>
           </ButtonToAddCoffee>
