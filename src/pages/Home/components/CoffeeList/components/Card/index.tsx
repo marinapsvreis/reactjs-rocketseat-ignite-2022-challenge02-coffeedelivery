@@ -1,5 +1,5 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import ExpressoTadicional from '../../../../../../assets/tipos-de-cafe/expresso-tradicional.png'
+import { Coffee } from '../..'
 import {
   ButtonToAddCoffee,
   CardContainer,
@@ -15,20 +15,24 @@ import {
   Tags,
 } from './styles'
 
-export function Card() {
+interface CardProps {
+  coffee: Coffee
+}
+
+export function Card({ coffee }: CardProps) {
   return (
     <CardContainer>
-      <CoffeImg src={ExpressoTadicional} alt="expresso tradicional" />
+      <CoffeImg src={coffee.img} alt={coffee.name} />
       <Tags>
-        <Tag>TRADICIONAL</Tag>
+        {coffee.labels.map((label: string) => (
+          <Tag key={label}>{label}</Tag>
+        ))}
       </Tags>
-      <CoffeeName>Expresso Tradicional</CoffeeName>
-      <Description>
-        O tradicional café feito com água quente e grãos moidos
-      </Description>
+      <CoffeeName>{coffee.name}</CoffeeName>
+      <Description>{coffee.description}</Description>
       <CardFooter>
         <Indexer>R$</Indexer>
-        <Price>9,90</Price>
+        <Price>{coffee.price.toFixed(2).replace('.', ',')}</Price>
         <CartInfo>
           <ButtonToAddCoffee>
             <button>
