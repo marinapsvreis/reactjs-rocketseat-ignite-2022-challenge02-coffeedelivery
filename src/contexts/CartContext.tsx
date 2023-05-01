@@ -1,9 +1,17 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
 import { Coffee } from '../pages/Home/components/CoffeeList'
 
+export interface CoffeeOnCart extends Coffee {
+  quantity: number
+}
 interface CartContextType {
   products: Coffee[]
-  addProductToCart: (product: Coffee) => void
+  addProductToCart: (productToAdd: Coffee, quantity: number) => void
+  removeProductFromCart: (productToRemove: Coffee) => void
+  updateProductQuantityOnCart: (
+    productToUpdateQuantity: CoffeeOnCart,
+    newQuantity: number,
+  ) => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -13,7 +21,7 @@ interface CartContextProviderProps {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [products, setProducts] = useState<Coffee[]>(() => {
+  const [products, setProducts] = useState<CoffeeOnCart[]>(() => {
     const storagedCart = localStorage.getItem(
       '@ignite-coffee-delivery:products-state-1.0.0',
     )
@@ -25,8 +33,50 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     return []
   })
 
-  function addProductToCart(product: Coffee) {
-    setProducts((state) => [...state, product])
+  function addProductToCart(productToAdd: Coffee, quantity: number) {
+    const findSameProduct = products.find(
+      (product) => product.id === productToAdd.id,
+    )
+
+    if (findSameProduct) {
+      alert(
+        'O produto já está no carrinho, acesse a atualize para quantidade desejada',
+      )
+    } else {
+      setProducts((state) => [
+        ...state,
+        {
+          ...productToAdd,
+          quantity,
+        },
+      ])
+    }
+  }
+
+  function removeProductFromCart(productToRemove: Coffee) {
+    const productsListWithoutRemovedProduct = products.filter(
+      (product) => product.id !== productToRemove.id,
+    )
+
+    setProducts(productsListWithoutRemovedProduct)
+  }
+
+  function updateProductQuantityOnCart(
+    productToUpdateQuantity: CoffeeOnCart,
+    newQuantity: number,
+  ) {
+    const productsListUpdated = products.map((product) => {
+      if (productToUpdateQuantity.id === product.id) {
+        return {
+          ...product,
+          quantity: newQuantity,
+        }
+      }
+
+      return product
+    })
+
+    setProducts(productsListUpdated)
   }
 
   useEffect(() => {
@@ -42,6 +92,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       value={{
         products,
         addProductToCart,
+        removeProductFromCart,
+        updateProductQuantityOnCart,
       }}
     >
       {children}

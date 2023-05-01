@@ -1,6 +1,6 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import { useState } from 'react'
-import { Coffee } from '../../../Home/components/CoffeeList'
+import { useContext, useEffect, useState } from 'react'
+import { CartContext, CoffeeOnCart } from '../../../../contexts/CartContext'
 import {
   Options,
   ProductContainer,
@@ -14,11 +14,13 @@ import {
 } from './styles'
 
 interface ProductProps {
-  product: Coffee
+  product: CoffeeOnCart
 }
 
 export function Product({ product }: ProductProps) {
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(product.quantity)
+  const { removeProductFromCart, updateProductQuantityOnCart } =
+    useContext(CartContext)
 
   function handleAddCount() {
     setCount(count + 1)
@@ -29,6 +31,11 @@ export function Product({ product }: ProductProps) {
       setCount(count - 1)
     }
   }
+
+  useEffect(() => {
+    updateProductQuantityOnCart(product, count)
+    console.log(count)
+  }, [count])
 
   return (
     <ProductContainer>
@@ -46,7 +53,7 @@ export function Product({ product }: ProductProps) {
                 <Plus size={16} weight="bold" />
               </button>
             </ProductQuantity>
-            <RemoveButton>
+            <RemoveButton onClick={() => removeProductFromCart(product)}>
               <Trash size={16} />
               <p>REMOVER</p>
             </RemoveButton>
