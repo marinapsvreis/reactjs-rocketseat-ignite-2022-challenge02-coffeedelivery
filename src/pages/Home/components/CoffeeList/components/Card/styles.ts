@@ -85,6 +85,8 @@ export const ButtonToAddCoffee = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    border-radius: 6px;
   }
 
   button:hover {
