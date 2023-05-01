@@ -40,8 +40,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     )
 
     if (findSameProduct) {
+      const productToUpdate = {
+        ...productToAdd,
+        quantity,
+        totalValue: productToAdd.price * quantity,
+      }
       updateProductQuantityOnCart(
-        productToAdd,
+        productToUpdate,
         findSameProduct.quantity
           ? findSameProduct.quantity + quantity
           : quantity,
