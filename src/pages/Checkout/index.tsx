@@ -6,6 +6,7 @@ import {
   Money,
 } from 'phosphor-react'
 import { useContext, useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { CartContext } from '../../contexts/CartContext'
 import { Product } from './components/Product'
@@ -28,7 +29,7 @@ import {
   TotalOrder,
 } from './styles'
 
-interface Address {
+export interface Address {
   cep: string
   numero?: string
   complemento?: string
@@ -40,8 +41,8 @@ interface Address {
 
 export function Checkout() {
   const { products } = useContext(CartContext)
-  const [paymentOption, setPaymentOption] = useState('')
   const [cep, setCep] = useState('')
+  const [paymentOption, setPaymentOption] = useState('')
   const [address, setAddress] = useState<Address>({
     cep: '',
     numero: '',
@@ -97,6 +98,20 @@ export function Checkout() {
         .catch((error) => console.log(error))
     }
   }, [cep])
+
+  useEffect(() => {
+    localStorage.setItem(
+      '@ignite-coffee-delivery:address-state-1.0.0',
+      JSON.stringify(address),
+    )
+  }, [address])
+
+  useEffect(() => {
+    localStorage.setItem(
+      '@ignite-coffee-delivery:payment-option-state-1.0.0',
+      paymentOption,
+    )
+  }, [paymentOption])
 
   return (
     <CheckoutContainer>
@@ -215,25 +230,25 @@ export function Checkout() {
           <PayOptionsContainer>
             <PayOption
               className={`${
-                paymentOption === 'CARTÃO DE CRÉDITO' ? 'selected' : ''
+                paymentOption === 'Cartão de Crédito' ? 'selected' : ''
               }`}
-              onClick={() => setPaymentOption('CARTÃO DE CRÉDITO')}
+              onClick={() => setPaymentOption('Cartão de Crédito')}
             >
               <CreditCard size={16} />
               <p>CARTÃO DE CRÉDITO</p>
             </PayOption>
             <PayOption
               className={`${
-                paymentOption === 'CARTÃO DE DÉBITO' ? 'selected' : ''
+                paymentOption === 'Cartão de débito' ? 'selected' : ''
               }`}
-              onClick={() => setPaymentOption('CARTÃO DE DÉBITO')}
+              onClick={() => setPaymentOption('Cartão de débito')}
             >
               <Bank size={16} />
               <p>CARTÃO DÉBITO</p>
             </PayOption>
             <PayOption
-              className={`${paymentOption === 'DINHEIRO' ? 'selected' : ''}`}
-              onClick={() => setPaymentOption('DINHEIRO')}
+              className={`${paymentOption === 'Dinheiro' ? 'selected' : ''}`}
+              onClick={() => setPaymentOption('Dinheiro')}
             >
               <Money size={16} />
               <p>DINHEIRO</p>
@@ -278,9 +293,15 @@ export function Checkout() {
               </div>
             </TotalOrder>
           </SummaryContainer>
-          <SendOrder disabled={products.length === 0}>
-            CONFIRMAR PEDIDO
-          </SendOrder>
+          <NavLink
+            to="/success"
+            title="Success"
+            style={{ textDecoration: 'none' }}
+          >
+            <SendOrder disabled={products.length === 0}>
+              CONFIRMAR PEDIDO
+            </SendOrder>
+          </NavLink>
         </CartContainer>
       </div>
     </CheckoutContainer>

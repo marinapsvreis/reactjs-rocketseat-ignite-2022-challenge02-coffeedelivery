@@ -14,6 +14,7 @@ interface CartContextType {
     productToUpdateQuantity: CoffeeOnCart,
     newQuantity: number,
   ) => void
+  cleanCart: () => void
 }
 
 export const CartContext = createContext({} as CartContextType)
@@ -114,6 +115,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     setProducts(productsListUpdated)
   }
 
+  function cleanCart() {
+    setProducts([])
+  }
+
   useEffect(() => {
     const stateJSON = JSON.stringify(products)
     localStorage.setItem(
@@ -129,6 +134,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         addProductToCart,
         removeProductFromCart,
         updateProductQuantityOnCart,
+        cleanCart,
       }}
     >
       {children}

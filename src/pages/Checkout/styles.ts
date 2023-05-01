@@ -158,6 +158,7 @@ export const SendOrder = styled.button`
   background-color: ${(props) => props.theme['yellow-500']};
   border-radius: 6px;
   color: ${(props) => props.theme.white};
+  text-decoration: none;
 
   &:disabled {
     opacity: 0.5;
