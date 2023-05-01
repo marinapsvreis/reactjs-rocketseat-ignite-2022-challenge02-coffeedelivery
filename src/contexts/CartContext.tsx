@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import { Coffee } from '../pages/Home/components/CoffeeList'
 
 export interface CoffeeOnCart extends Coffee {
@@ -51,6 +52,19 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
           ? findSameProduct.quantity + quantity
           : quantity,
       )
+      toast.info(
+        'A quantidade do produto foi atualizada no carrinho com sucesso',
+        {
+          position: 'top-center',
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        },
+      )
     } else {
       setProducts((state) => [
         ...state,
@@ -60,6 +74,16 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
           totalValue: productToAdd.price * quantity,
         },
       ])
+      toast.success('O produto foi adicionado ao carrinho', {
+        position: 'top-center',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      })
     }
   }
 
