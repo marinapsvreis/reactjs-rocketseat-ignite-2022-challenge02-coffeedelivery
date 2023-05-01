@@ -43,9 +43,9 @@ export const CircleCounter = styled.span`
   color: ${(props) => props.theme.white};
   background: ${(props) => props.theme['yellow-700']};
 
-  position: relative;
-  top: -16px;
-  right: -16px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
 
   display: flex;
   justify-content: center;
@@ -61,4 +61,6 @@ export const Cart = styled.button`
   background: ${(props) => props.theme['yellow-300']};
   padding: 8px;
   border-radius: 6px;
+
+  position: relative;
 `
