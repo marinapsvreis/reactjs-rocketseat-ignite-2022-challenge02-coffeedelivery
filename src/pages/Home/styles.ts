@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.main`
+  padding-top: 6.5rem;
   display: flex;
 `
 
