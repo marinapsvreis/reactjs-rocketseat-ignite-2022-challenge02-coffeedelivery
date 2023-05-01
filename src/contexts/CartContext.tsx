@@ -2,7 +2,7 @@ import { ReactNode, createContext, useEffect, useState } from 'react'
 import { Coffee } from '../pages/Home/components/CoffeeList'
 
 export interface CoffeeOnCart extends Coffee {
-  quantity: number
+  quantity?: number
 }
 interface CartContextType {
   products: Coffee[]
@@ -39,8 +39,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     )
 
     if (findSameProduct) {
-      alert(
-        'O produto já está no carrinho, acesse a atualize para quantidade desejada',
+      updateProductQuantityOnCart(
+        productToAdd,
+        findSameProduct.quantity
+          ? findSameProduct.quantity + quantity
+          : quantity,
       )
     } else {
       setProducts((state) => [

@@ -18,7 +18,7 @@ interface ProductProps {
 }
 
 export function Product({ product }: ProductProps) {
-  const [count, setCount] = useState(product.quantity)
+  const [count, setCount] = useState(product.quantity || 1)
   const { removeProductFromCart, updateProductQuantityOnCart } =
     useContext(CartContext)
 
@@ -58,7 +58,9 @@ export function Product({ product }: ProductProps) {
             </RemoveButton>
           </Options>
         </ProductInfo>
-        <ProductPrice>{product.price}</ProductPrice>
+        <ProductPrice>
+          R$ {product.price.toFixed(2).replace('.', ',')}
+        </ProductPrice>
       </ProductWrapper>
       <Separator />
     </ProductContainer>

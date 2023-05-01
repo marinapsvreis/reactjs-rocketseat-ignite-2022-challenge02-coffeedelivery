@@ -7,7 +7,6 @@ import {
 } from 'phosphor-react'
 import { useContext, useEffect } from 'react'
 import { CartContext } from '../../contexts/CartContext'
-import { Coffee } from '../Home/components/CoffeeList'
 import { Product } from './components/Product'
 import {
   CartContainer,
