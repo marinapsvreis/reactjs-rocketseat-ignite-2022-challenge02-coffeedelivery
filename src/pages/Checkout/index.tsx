@@ -99,7 +99,15 @@ export function Checkout() {
           <SummaryContainer>
             <TotalItems>
               <div>Total de itens</div>
-              <div>R$ 29,70</div>
+              <div>
+                R${' '}
+                {products
+                  .reduce((sumTotal, product) => {
+                    return sumTotal + product.price * product.quantity
+                  }, 0)
+                  .toFixed(2)
+                  .replace('.', ',')}
+              </div>
             </TotalItems>
             <DeliveryPrice>
               <div>Entrega</div>
@@ -107,7 +115,15 @@ export function Checkout() {
             </DeliveryPrice>
             <TotalOrder>
               <div>Total</div>
-              <div>R$ 33,20</div>
+              <div>
+                R${' '}
+                {products
+                  .reduce((sumTotal, product) => {
+                    return sumTotal + product.price * product.quantity + 3.5
+                  }, 0)
+                  .toFixed(2)
+                  .replace('.', ',')}
+              </div>
             </TotalOrder>
           </SummaryContainer>
           <SendOrder>CONFIRMAR PEDIDO</SendOrder>

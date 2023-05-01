@@ -59,7 +59,7 @@ export function Product({ product }: ProductProps) {
           </Options>
         </ProductInfo>
         <ProductPrice>
-          R$ {product.price.toFixed(2).replace('.', ',')}
+          R$ {(product.price * count).toFixed(2).replace('.', ',')}
         </ProductPrice>
       </ProductWrapper>
       <Separator />

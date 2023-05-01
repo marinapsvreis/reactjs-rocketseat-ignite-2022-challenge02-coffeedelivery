@@ -2,12 +2,13 @@ import { ReactNode, createContext, useEffect, useState } from 'react'
 import { Coffee } from '../pages/Home/components/CoffeeList'
 
 export interface CoffeeOnCart extends Coffee {
-  quantity?: number
+  quantity: number
+  totalValue: number
 }
 interface CartContextType {
-  products: Coffee[]
+  products: CoffeeOnCart[]
   addProductToCart: (productToAdd: Coffee, quantity: number) => void
-  removeProductFromCart: (productToRemove: Coffee) => void
+  removeProductFromCart: (productToRemove: CoffeeOnCart) => void
   updateProductQuantityOnCart: (
     productToUpdateQuantity: CoffeeOnCart,
     newQuantity: number,
@@ -51,6 +52,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         {
           ...productToAdd,
           quantity,
+          totalValue: productToAdd.price * quantity,
         },
       ])
     }
@@ -73,6 +75,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         return {
           ...product,
           quantity: newQuantity,
+          totalValue: productToUpdateQuantity.price * newQuantity,
         }
       }
 
