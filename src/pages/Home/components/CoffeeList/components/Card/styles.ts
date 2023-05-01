@@ -60,35 +60,50 @@ export const Tag = styled.div`
 export const CardFooter = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 23px;
   align-items: center;
   margin-top: 2.06rem;
 `
 
 export const ButtonToAddCoffee = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+
   align-items: center;
   background-color: ${(props) => props.theme['base-button']};
   border-radius: 6px;
-  margin-left: 23px;
+  width: 4.5rem;
 
   button {
     border: none;
     background-color: ${(props) => props.theme['base-button']};
     color: ${(props) => props.theme['purple-500']};
-    width: 1.5rem;
-    height: 1.5rem;
+    height: 100%;
     font-size: 1.5rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  p {
-    width: 1.25rem;
-    height: 1.25rem;
-    text-align: center;
+  button:hover {
+    color: ${(props) => props.theme['purple-700']};
   }
+
+  p {
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* border: 1px solid #ff4455; */
+  }
+`
+
+export const PriceContainer = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 export const Indexer = styled.p`

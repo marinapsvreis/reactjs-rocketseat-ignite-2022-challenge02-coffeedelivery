@@ -11,6 +11,7 @@ import {
   IconBox,
   Indexer,
   Price,
+  PriceContainer,
   Tag,
   Tags,
 } from './styles'
@@ -31,16 +32,18 @@ export function Card({ coffee }: CardProps) {
       <CoffeeName>{coffee.name}</CoffeeName>
       <Description>{coffee.description}</Description>
       <CardFooter>
-        <Indexer>R$</Indexer>
-        <Price>{coffee.price.toFixed(2).replace('.', ',')}</Price>
+        <PriceContainer>
+          <Indexer>R$</Indexer>
+          <Price>{coffee.price.toFixed(2).replace('.', ',')}</Price>
+        </PriceContainer>
         <CartInfo>
           <ButtonToAddCoffee>
             <button>
-              <Minus size={14} weight="bold" color="#8047F8" />
+              <Minus size={16} weight="bold" />
             </button>
             <p>1</p>
             <button>
-              <Plus size={14} weight="bold" color="#8047F8" />
+              <Plus size={16} weight="bold" />
             </button>
           </ButtonToAddCoffee>
           <IconBox>

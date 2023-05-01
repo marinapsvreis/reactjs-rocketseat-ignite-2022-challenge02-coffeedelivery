@@ -18,4 +18,5 @@ export const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
+  margin-bottom: 9.81rem;
 `

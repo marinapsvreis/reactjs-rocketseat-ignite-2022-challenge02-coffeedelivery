@@ -1,7 +1,9 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
+import BackgroundEffect from '../../assets/background-effect.png'
 import MainImg from '../../assets/main-image-coffee-delivery.png'
 import { CoffeeList } from './components/CoffeeList'
 import {
+  BackgroundEffectImg,
   CapaContainer,
   Dot,
   DotBall,
@@ -15,6 +17,7 @@ import {
 export function Home() {
   return (
     <>
+      <BackgroundEffectImg src={BackgroundEffect} alt="background effect" />
       <HomeContainer>
         <CapaContainer>
           <div>

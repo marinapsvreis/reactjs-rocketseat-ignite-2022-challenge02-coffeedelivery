@@ -4,6 +4,13 @@ export const HomeContainer = styled.main`
   display: flex;
 `
 
+export const BackgroundEffectImg = styled.img`
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 544px;
+`
+
 export const CapaContainer = styled.div`
   width: 100%;
   height: 34rem;
