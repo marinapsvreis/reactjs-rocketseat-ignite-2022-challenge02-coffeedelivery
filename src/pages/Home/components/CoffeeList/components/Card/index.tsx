@@ -1,6 +1,7 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Coffee } from '../..'
+import { CartContext } from '../../../../../../contexts/CartContext'
 import {
   ButtonToAddCoffee,
   CardContainer,
@@ -9,7 +10,7 @@ import {
   CoffeImg,
   CoffeeName,
   Description,
-  IconBox,
+  IconBoxButton,
   Indexer,
   Price,
   PriceContainer,
@@ -23,6 +24,7 @@ interface CardProps {
 
 export function Card({ coffee }: CardProps) {
   const [count, setCount] = useState(1)
+  const { addProductToCart } = useContext(CartContext)
 
   function handleAddCount(coffee: Coffee) {
     setCount(count + 1)
@@ -32,6 +34,10 @@ export function Card({ coffee }: CardProps) {
     if (count - 1 > 0) {
       setCount(count - 1)
     }
+  }
+
+  function handleAddProductToCart(coffee: Coffee) {
+    addProductToCart(coffee)
   }
 
   return (
@@ -59,9 +65,12 @@ export function Card({ coffee }: CardProps) {
               <Plus size={16} weight="bold" />
             </button>
           </ButtonToAddCoffee>
-          <IconBox>
+          <IconBoxButton
+            onClick={() => handleAddProductToCart(coffee)}
+            title="Adicionar no carrinho"
+          >
             <ShoppingCart size={22} weight="fill" color="#fff" />
-          </IconBox>
+          </IconBoxButton>
         </CartInfo>
       </CardFooter>
     </CardContainer>

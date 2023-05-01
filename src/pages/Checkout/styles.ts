@@ -109,7 +109,7 @@ export const PayOption = styled.div`
 
 export const CartContainer = styled.div`
   width: 28rem;
-  height: 31.125rem;
+  min-height: 31.125rem;
   background-color: ${(props) => props.theme['base-card']};
   border-radius: 6px 44px 6px 44px;
   padding: 40px;

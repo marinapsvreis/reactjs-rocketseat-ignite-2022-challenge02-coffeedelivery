@@ -5,6 +5,9 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+import { useContext, useEffect } from 'react'
+import { CartContext } from '../../contexts/CartContext'
+import { Coffee } from '../Home/components/CoffeeList'
 import { Product } from './components/Product'
 import {
   CartContainer,
@@ -26,6 +29,8 @@ import {
 } from './styles'
 
 export function Checkout() {
+  const { products } = useContext(CartContext)
+
   return (
     <CheckoutContainer>
       <div>
@@ -89,8 +94,9 @@ export function Checkout() {
       <div>
         <h3>Cafés selecionados</h3>
         <CartContainer>
-          <Product />
-          <Product />
+          {products.map((product) => (
+            <Product key={product.name} product={product} />
+          ))}
           <SummaryContainer>
             <TotalItems>
               <div>Total de itens</div>

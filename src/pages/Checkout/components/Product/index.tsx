@@ -1,5 +1,6 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
 import { useState } from 'react'
+import { Coffee } from '../../../Home/components/CoffeeList'
 import {
   Options,
   ProductContainer,
@@ -12,7 +13,11 @@ import {
   Separator,
 } from './styles'
 
-export function Product() {
+interface ProductProps {
+  product: Coffee
+}
+
+export function Product({ product }: ProductProps) {
   const [count, setCount] = useState(1)
 
   function handleAddCount() {
@@ -28,9 +33,9 @@ export function Product() {
   return (
     <ProductContainer>
       <ProductWrapper>
-        <img src="https://imgur.com/A0p3RKu.png" alt="" />
+        <img src={product.img} alt="" />
         <ProductInfo>
-          <ProductName>Expresso Tradicional</ProductName>
+          <ProductName>{product.name}</ProductName>
           <Options>
             <ProductQuantity>
               <button onClick={() => handleSubstractCount()}>
@@ -47,7 +52,7 @@ export function Product() {
             </RemoveButton>
           </Options>
         </ProductInfo>
-        <ProductPrice>R$ 9,90</ProductPrice>
+        <ProductPrice>{product.price}</ProductPrice>
       </ProductWrapper>
       <Separator />
     </ProductContainer>

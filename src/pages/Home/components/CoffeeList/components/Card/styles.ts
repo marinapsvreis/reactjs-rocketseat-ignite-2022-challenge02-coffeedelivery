@@ -127,11 +127,13 @@ export const CartInfo = styled.div`
   gap: 8px;
 `
 
-export const IconBox = styled.div`
+export const IconBoxButton = styled.button`
   background-color: ${(props) => props.theme['purple-700']};
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px;
+  border: none;
+  box-shadow: none;
   border-radius: 6px;
 `
