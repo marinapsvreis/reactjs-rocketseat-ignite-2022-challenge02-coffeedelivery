@@ -12,11 +12,11 @@ import {
 } from './styles'
 
 import { CartContext } from '../../contexts/CartContext'
-import { Address } from '../Checkout'
+import { AddressType } from '../Checkout/components/Address'
 
 export function Success() {
   const [paymentOption, setPaymentOption] = useState('')
-  const [address, setAddress] = useState<Address>({
+  const [address, setAddress] = useState<AddressType>({
     cep: '',
     numero: '',
     complemento: '',
