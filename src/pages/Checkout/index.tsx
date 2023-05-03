@@ -1,5 +1,3 @@
-import { useContext } from 'react'
-import { CartContext } from '../../contexts/CartContext'
 import { Address } from './components/Address'
 import { Cart } from './components/Cart'
 import { PaymentMethod } from './components/PaymentMethod'

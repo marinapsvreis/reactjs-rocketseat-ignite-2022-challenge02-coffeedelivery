@@ -1,5 +1,7 @@
 import { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+import { toast } from 'react-toastify'
 import { CartContext } from '../../../../contexts/CartContext'
 import { Product } from '../Product'
 import {
@@ -13,6 +15,63 @@ import {
 
 export function Cart() {
   const { products } = useContext(CartContext)
+  const navigate = useNavigate()
+
+  function handleConfirmOrder() {
+    const addressString = localStorage.getItem(
+      '@ignite-coffee-delivery:address-state-1.0.0',
+    )
+
+    let addressObj
+    let addressIsValid
+
+    if (addressString) {
+      addressObj = JSON.parse(addressString)
+
+      addressIsValid =
+        addressObj.cep.length === 8 &&
+        addressObj.numero.length > 0 &&
+        addressObj.logradouro.length > 0 &&
+        addressObj.bairro.length > 0 &&
+        addressObj.localidade.length > 0 &&
+        addressObj.uf.length > 0
+    } else {
+      addressIsValid = false
+    }
+
+    const paymentOptionIsValid = localStorage.getItem(
+      '@ignite-coffee-delivery:payment-option-state-1.0.0',
+    )
+
+    const formIsValid = addressIsValid && paymentOptionIsValid
+
+    if (formIsValid) {
+      navigate('/success')
+    } else if (!addressIsValid) {
+      toast.info('Preencha seu endereço corretamente', {
+        position: 'top-center',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      })
+    } else {
+      toast.info('Selecione uma forma de pagamento', {
+        position: 'top-center',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      })
+    }
+  }
+
   return (
     <CartContainer>
       {products.map((product) => (
@@ -48,9 +107,12 @@ export function Cart() {
           </div>
         </TotalOrder>
       </SummaryContainer>
-      <NavLink to="/success" title="Success" style={{ textDecoration: 'none' }}>
-        <SendOrder disabled={products.length === 0}>CONFIRMAR PEDIDO</SendOrder>
-      </NavLink>
+      <SendOrder
+        disabled={products.length === 0}
+        onClick={() => handleConfirmOrder()}
+      >
+        CONFIRMAR PEDIDO
+      </SendOrder>
     </CartContainer>
   )
 }
