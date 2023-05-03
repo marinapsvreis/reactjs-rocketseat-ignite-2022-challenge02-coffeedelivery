@@ -1,6 +1,6 @@
 O aplicativo do desafio trata-se de um coffee delivery, onde o cliente pode receber seu café fresquinho em casa, conforme telas abaixo.
 
-[Coffee Delivery - Home](https://i.imgur.com/EbYitlF.png)
+![Coffee Delivery - Home](https://i.imgur.com/EbYitlF.png)
 ![Coffee Delivery - Checkout](https://i.imgur.com/I5kA3b6.png)
 ![Coffee Delivery - Success](https://i.imgur.com/fkjDVyp.png)
 
