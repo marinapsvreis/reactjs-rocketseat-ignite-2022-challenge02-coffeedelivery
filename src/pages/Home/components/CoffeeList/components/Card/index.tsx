@@ -26,11 +26,11 @@ export function Card({ coffee }: CardProps) {
   const [count, setCount] = useState(1)
   const { addProductToCart } = useContext(CartContext)
 
-  function handleAddCount(coffee: Coffee) {
+  function handleAddCount() {
     setCount(count + 1)
   }
 
-  function handleSubstractCount(coffee: Coffee) {
+  function handleSubstractCount() {
     if (count - 1 > 0) {
       setCount(count - 1)
     }
@@ -57,11 +57,11 @@ export function Card({ coffee }: CardProps) {
         </PriceContainer>
         <CartInfo>
           <ButtonToAddCoffee>
-            <button onClick={() => handleSubstractCount(coffee)}>
+            <button onClick={() => handleSubstractCount()}>
               <Minus size={16} weight="bold" />
             </button>
             <p>{count}</p>
-            <button onClick={() => handleAddCount(coffee)}>
+            <button onClick={() => handleAddCount()}>
               <Plus size={16} weight="bold" />
             </button>
           </ButtonToAddCoffee>
