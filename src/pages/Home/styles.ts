@@ -34,13 +34,34 @@ export const CapaContainer = styled.div`
     max-width: 36.75rem;
     margin-top: 1rem;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: 50rem;
+
+    h1 {
+      font-size: 2.8rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    height: 50rem;
+    margin-bottom: 12rem;
+  }
 `
 
 export const DotsContainer = styled.div`
   display: flex;
+  align-items: start;
+  justify-content: center;
   gap: 40px;
   max-width: 39rem;
   margin-top: 4.125rem;
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `
 
 export const DotsContainerLeft = styled.div`
@@ -88,4 +109,10 @@ export const DotBall = styled.div`
 export const ImgHome = styled.img`
   width: 29.75rem;
   height: 22.5rem;
+
+  @media (max-width: 460px) {
+    width: 20.825rem;
+    height: 15.75rem;
+    margin-top: 5rem;
+  }
 `

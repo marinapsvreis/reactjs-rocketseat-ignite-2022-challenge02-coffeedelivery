@@ -20,6 +20,10 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    padding-inline: 2rem;
+  }
 `
 
 export const Logo = styled.img`

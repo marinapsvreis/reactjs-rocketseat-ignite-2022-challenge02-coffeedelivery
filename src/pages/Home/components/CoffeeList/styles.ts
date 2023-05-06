@@ -11,12 +11,19 @@ export const CoffeeListContainer = styled.main`
     color: ${(props) => props.theme['base-subtitle']};
 
     margin-bottom: 3.375rem;
+
+    @media (max-width: 768px) {
+      text-align: center;
+      margin-top: 2rem;
+    }
   }
 `
 
 export const CardList = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   gap: 32px;
   margin-bottom: 9.81rem;
 `

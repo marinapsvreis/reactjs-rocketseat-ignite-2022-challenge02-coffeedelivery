@@ -32,4 +32,18 @@ export const GlobalStyle = createGlobalStyle`
             cursor: not-allowed;
         }
     }
+
+    @media (max-width: 1120px){        
+        body {
+            width: 100vw;
+            padding-inline: 2rem;
+        }
+    }
+
+    
+    @media (max-width: 768px){
+        html{
+            font-size: 87.5%;
+        }
+    }
 `
