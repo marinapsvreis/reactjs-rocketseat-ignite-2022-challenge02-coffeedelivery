@@ -44,7 +44,7 @@ export function PaymentMethod() {
           onClick={() => setPaymentOption('Cartão de débito')}
         >
           <Bank size={16} />
-          <p>CARTÃO DÉBITO</p>
+          <p>CARTÃO DE DÉBITO</p>
         </PayOption>
         <PayOption
           className={`${paymentOption === 'Dinheiro' ? 'selected' : ''}`}

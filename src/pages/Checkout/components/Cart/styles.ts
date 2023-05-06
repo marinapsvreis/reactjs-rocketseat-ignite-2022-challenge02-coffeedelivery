@@ -10,6 +10,10 @@ export const CartContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 425px) {
+    width: 360px;
+  }
 `
 
 export const SummaryContainer = styled.div``

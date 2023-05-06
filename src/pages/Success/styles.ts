@@ -25,6 +25,18 @@ export const ContentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding-top: 40px;
+
+  @media (max-width: 1120px) {
+    flex-direction: column;
+
+    img {
+      margin-top: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const DeliveryContainer = styled.div`
@@ -49,6 +61,10 @@ export const DeliveryContainer = styled.div`
     z-index: -1;
     border-radius: 7px 37px 7px 37px;
     background: linear-gradient(102.89deg, #dbac2c 2.61%, #8047f8 98.76%);
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
   }
 `
 

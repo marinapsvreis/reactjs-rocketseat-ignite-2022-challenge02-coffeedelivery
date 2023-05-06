@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const AddressContainer = styled.div`
   width: 40rem;
-  height: 23.25rem;
   background-color: ${(props) => props.theme['base-card']};
   padding: 40px;
 
@@ -29,6 +28,31 @@ export const AddressContainer = styled.div`
   input.uf {
     width: 3.75rem;
   }
+
+  @media (max-width: 600px) {
+    width: 35rem;
+
+    input {
+      width: 100%;
+    }
+
+    input.numero,
+    input.bairro {
+      width: 100%;
+    }
+
+    input.uf {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 30rem;
+  }
+
+  @media (max-width: 425px) {
+    width: 360px;
+  }
 `
 export const Form = styled.form`
   display: flex;
@@ -38,4 +62,8 @@ export const Form = styled.form`
 export const LineForm = styled.div`
   display: flex;
   gap: 12px;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
 `

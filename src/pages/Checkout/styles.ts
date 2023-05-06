@@ -14,6 +14,19 @@ export const CheckoutContainer = styled.main`
     line-height: 130%;
     margin-bottom: 15px;
   }
+
+  @media (max-width: 1160px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  @media (max-width: 768px) {
+    h3 {
+      text-align: center;
+    }
+  }
 `
 
 export const TitleArea = styled.div`
